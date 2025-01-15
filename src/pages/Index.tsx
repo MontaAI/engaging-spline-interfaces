@@ -3,14 +3,28 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { AnimeNavBarDemo } from "@/components/ui/anime-navbar.demo";
+import { Squares } from "@/components/ui/squares-background";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black">
-      {/* Navigation */}
-      <AnimeNavBarDemo />
+    <div className="min-h-screen relative">
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <Squares 
+          direction="diagonal"
+          speed={0.3}
+          squareSize={50}
+          borderColor="rgba(255,255,255,0.1)"
+          hoverFillColor="rgba(255,255,255,0.05)"
+        />
+      </div>
 
-      {/* Hero Section with 3D Scene */}
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Navigation */}
+        <AnimeNavBarDemo />
+
+        {/* Rest of the content */}
       <section id="home" className="pt-24 p-8">
         <div className="max-w-6xl mx-auto">
           <SplineSceneBasic />
@@ -142,11 +156,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 };
 
-// Sample data - replace with your actual information
 const skills = [
   "React",
   "TypeScript",
