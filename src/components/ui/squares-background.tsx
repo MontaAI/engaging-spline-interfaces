@@ -26,13 +26,19 @@ export function Squares({
     x: number
     y: number
   } | null>(null)
+  const lastTime = useRef(0)
+  const offscreenCanvasRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
+    // Create offscreen canvas
+    offscreenCanvasRef.current = document.createElement('canvas');
+    const offscreenCtx = offscreenCanvasRef.current.getContext('2d');
+
     const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    if (!ctx || !offscreenCtx) return
 
     // Set canvas background
     canvas.style.background = "#060606"
@@ -42,21 +48,23 @@ export function Squares({
       canvas.height = canvas.offsetHeight
       numSquaresX.current = Math.ceil(canvas.width / squareSize) + 1
       numSquaresY.current = Math.ceil(canvas.height / squareSize) + 1
+      offscreenCanvasRef.current.width = canvas.width
+      offscreenCanvasRef.current.height = canvas.height
     }
 
     window.addEventListener("resize", resizeCanvas)
     resizeCanvas()
 
     const drawGrid = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      offscreenCtx.clearRect(0, 0, offscreenCanvasRef.current.width, offscreenCanvasRef.current.height)
 
       const startX = Math.floor(gridOffset.current.x / squareSize) * squareSize
       const startY = Math.floor(gridOffset.current.y / squareSize) * squareSize
 
-      ctx.lineWidth = 0.5
+      offscreenCtx.lineWidth = 0.5
 
-      for (let x = startX; x < canvas.width + squareSize; x += squareSize) {
-        for (let y = startY; y < canvas.height + squareSize; y += squareSize) {
+      for (let x = startX; x < offscreenCanvasRef.current.width + squareSize; x += squareSize) {
+        for (let y = startY; y < offscreenCanvasRef.current.height + squareSize; y += squareSize) {
           const squareX = x - (gridOffset.current.x % squareSize)
           const squareY = y - (gridOffset.current.y % squareSize)
 
@@ -65,32 +73,38 @@ export function Squares({
             Math.floor((x - startX) / squareSize) === hoveredSquare.x &&
             Math.floor((y - startY) / squareSize) === hoveredSquare.y
           ) {
-            ctx.fillStyle = hoverFillColor
-            ctx.fillRect(squareX, squareY, squareSize, squareSize)
+            offscreenCtx.fillStyle = hoverFillColor
+            offscreenCtx.fillRect(squareX, squareY, squareSize, squareSize)
           }
 
-          ctx.strokeStyle = borderColor
-          ctx.strokeRect(squareX, squareY, squareSize, squareSize)
+          offscreenCtx.strokeStyle = borderColor
+          offscreenCtx.strokeRect(squareX, squareY, squareSize, squareSize)
         }
       }
 
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
+      const gradient = offscreenCtx.createRadialGradient(
+        offscreenCanvasRef.current.width / 2,
+        offscreenCanvasRef.current.height / 2,
         0,
-        canvas.width / 2,
-        canvas.height / 2,
-        Math.sqrt(Math.pow(canvas.width, 2) + Math.pow(canvas.height, 2)) / 2,
+        offscreenCanvasRef.current.width / 2,
+        offscreenCanvasRef.current.height / 2,
+        Math.sqrt(Math.pow(offscreenCanvasRef.current.width, 2) + Math.pow(offscreenCanvasRef.current.height, 2)) / 2,
       )
       gradient.addColorStop(0, "rgba(6, 6, 6, 0)")
       gradient.addColorStop(1, "#060606")
 
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      offscreenCtx.fillStyle = gradient
+      offscreenCtx.fillRect(0, 0, offscreenCanvasRef.current.width, offscreenCanvasRef.current.height)
+
+      // Copy to main canvas
+      ctx.drawImage(offscreenCanvasRef.current, 0, 0)
     }
 
-    const updateAnimation = () => {
-      const effectiveSpeed = Math.max(speed, 0.1)
+    const updateAnimation = (currentTime: number) => {
+      if (!lastTime.current) lastTime.current = currentTime
+      const delta = (currentTime - lastTime.current) / 16 // normalize to 60fps
+
+      const effectiveSpeed = Math.max(speed * delta, 0.1)
 
       switch (direction) {
         case "right":
@@ -118,6 +132,7 @@ export function Squares({
       }
 
       drawGrid()
+      lastTime.current = currentTime
       requestRef.current = requestAnimationFrame(updateAnimation)
     }
 

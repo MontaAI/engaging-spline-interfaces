@@ -24,3 +24,5 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
     </Suspense>
   )
 }
+
+export default SplineScene;
