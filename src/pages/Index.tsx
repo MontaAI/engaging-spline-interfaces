@@ -116,54 +116,90 @@ const Index = () => {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-24 px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-12 relative">
+        <section id="contact" className="py-24 px-8 relative">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12 relative">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
                 Get in Touch
               </span>
             </h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button 
-                variant="outline" 
-                className="bg-black/40 border-gray-700 backdrop-blur-sm hover:bg-purple-500/20 hover:text-purple-300 transition-all" 
-                asChild
-              >
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="bg-black/40 border-gray-700 backdrop-blur-sm hover:bg-purple-500/20 hover:text-purple-300 transition-all" 
-                asChild
-              >
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="mr-2 h-4 w-4" />
-                  LinkedIn
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="bg-black/40 border-gray-700 backdrop-blur-sm hover:bg-purple-500/20 hover:text-purple-300 transition-all" 
-                asChild
-              >
-                <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-                  <Twitter className="mr-2 h-4 w-4" />
-                  Twitter
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="bg-black/40 border-gray-700 backdrop-blur-sm hover:bg-purple-500/20 hover:text-purple-300 transition-all" 
-                asChild
-              >
-                <a href="mailto:your.email@example.com">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Email
-                </a>
-              </Button>
+            
+            {/* Contact Cards Grid */}
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <Card className="bg-black/40 border-gray-800 backdrop-blur-sm transform hover:scale-[1.02] transition-all duration-300">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                    <Mail className="h-5 w-5 text-purple-400" />
+                    Send a Message
+                  </h3>
+                  <div className="space-y-4">
+                    <input
+                      type="email"
+                      placeholder="Your email"
+                      className="w-full px-4 py-2 rounded-md bg-white/5 border border-gray-800 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none text-gray-300"
+                    />
+                    <textarea
+                      placeholder="Your message"
+                      rows={4}
+                      className="w-full px-4 py-2 rounded-md bg-white/5 border border-gray-800 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none text-gray-300 resize-none"
+                    />
+                    <Button 
+                      className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-medium py-2 px-4 rounded-md transition-all duration-300 flex items-center justify-center gap-2 group"
+                    >
+                      Send Message
+                      <Mail className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-black/40 border-gray-800 backdrop-blur-sm transform hover:scale-[1.02] transition-all duration-300">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-semibold text-white mb-4">Connect With Me</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Button 
+                      variant="outline" 
+                      className="bg-black/40 border-gray-700 backdrop-blur-sm hover:bg-purple-500/20 hover:text-purple-300 transition-all flex items-center gap-2" 
+                      asChild
+                    >
+                      <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+                        <Github className="h-4 w-4" />
+                        GitHub
+                      </a>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="bg-black/40 border-gray-700 backdrop-blur-sm hover:bg-purple-500/20 hover:text-purple-300 transition-all flex items-center gap-2" 
+                      asChild
+                    >
+                      <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+                        <Linkedin className="h-4 w-4" />
+                        LinkedIn
+                      </a>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="bg-black/40 border-gray-700 backdrop-blur-sm hover:bg-purple-500/20 hover:text-purple-300 transition-all flex items-center gap-2" 
+                      asChild
+                    >
+                      <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+                        <Twitter className="h-4 w-4" />
+                        Twitter
+                      </a>
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="bg-black/40 border-gray-700 backdrop-blur-sm hover:bg-purple-500/20 hover:text-purple-300 transition-all flex items-center gap-2" 
+                      asChild
+                    >
+                      <a href="mailto:your.email@example.com">
+                        <Mail className="h-4 w-4" />
+                        Email
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
