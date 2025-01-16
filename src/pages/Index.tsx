@@ -1,13 +1,37 @@
 import { SplineSceneBasic } from "@/components/ui/splite.demo";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Twitter, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, ExternalLink, Code2, Brain, Database, Git, Globe, Layout, Server, Terminal, Sparkles, Moon, Sun } from "lucide-react";
 import { AnimeNavBarDemo } from "@/components/ui/anime-navbar.demo";
 import { Squares } from "@/components/ui/squares-background";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const Index = () => {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="min-h-screen relative bg-[#060606]">
+    <div className="min-h-screen relative bg-background">
+      {/* Theme Toggle Button */}
+      <button
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        className="fixed top-4 right-4 z-50 p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+        aria-label="Toggle theme"
+      >
+        {theme === "dark" ? (
+          <Sun className="h-5 w-5 text-yellow-500" />
+        ) : (
+          <Moon className="h-5 w-5 text-slate-700" />
+        )}
+      </button>
+
       {/* Background with gradient overlay */}
       <div className="fixed inset-0 z-0">
         <Squares 
@@ -17,14 +41,13 @@ const Index = () => {
           borderColor="rgba(255,255,255,0.1)"
           hoverFillColor="rgba(255,255,255,0.05)"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background/80" />
       </div>
 
       {/* Content */}
       <div className="relative z-10">
         <AnimeNavBarDemo />
 
-        {/* Hero Section */}
         <section id="home" className="pt-32 p-8">
           <div className="max-w-6xl mx-auto">
             <div className="mb-12 text-center">
@@ -39,7 +62,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* About Section */}
         <section id="about" className="py-24 px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12 relative">
@@ -60,20 +82,26 @@ const Index = () => {
 
         {/* Skills Section */}
         <section id="skills" className="py-24 px-8">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12 relative">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-                Skills
+                Technical Skills
               </span>
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {skills.map((skill) => (
                 <Card 
-                  key={skill} 
-                  className="bg-black/40 border-gray-800 backdrop-blur-sm transform hover:scale-105 transition-all duration-300"
+                  key={skill.name} 
+                  className="group bg-card/40 border-border/50 backdrop-blur-sm transform hover:scale-105 transition-all duration-300 overflow-hidden"
                 >
-                  <CardContent className="p-6 text-center">
-                    <span className="text-gray-300 font-medium">{skill}</span>
+                  <CardContent className="p-6">
+                    <div className="flex flex-col items-center space-y-4">
+                      <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                        {skill.icon}
+                      </div>
+                      <h3 className="text-lg font-semibold text-foreground">{skill.name}</h3>
+                      <p className="text-sm text-muted-foreground text-center">{skill.description}</p>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -81,7 +109,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Projects Section */}
         <section id="projects" className="py-24 px-8">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12 relative">
@@ -147,7 +174,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Contact Section */}
         <section id="contact" className="py-24 px-8 relative">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12 relative">
@@ -241,15 +267,46 @@ const Index = () => {
 };
 
 const skills = [
-  "React",
-  "TypeScript",
-  "Node.js",
-  "JavaScript",
-  "HTML/CSS",
-  "Git",
-  "REST APIs",
-  "SQL",
-  "MongoDB",
+  {
+    name: "Frontend Development",
+    icon: <Layout className="w-8 h-8 text-purple-400" />,
+    description: "React, TypeScript, and modern web technologies"
+  },
+  {
+    name: "Backend Development",
+    icon: <Server className="w-8 h-8 text-purple-400" />,
+    description: "Node.js, Express, and RESTful APIs"
+  },
+  {
+    name: "Database Management",
+    icon: <Database className="w-8 h-8 text-purple-400" />,
+    description: "SQL, MongoDB, and data modeling"
+  },
+  {
+    name: "Version Control",
+    icon: <Git className="w-8 h-8 text-purple-400" />,
+    description: "Git, GitHub, and collaborative development"
+  },
+  {
+    name: "Web Technologies",
+    icon: <Globe className="w-8 h-8 text-purple-400" />,
+    description: "HTML5, CSS3, and responsive design"
+  },
+  {
+    name: "Programming",
+    icon: <Code2 className="w-8 h-8 text-purple-400" />,
+    description: "JavaScript, TypeScript, and Python"
+  },
+  {
+    name: "Problem Solving",
+    icon: <Brain className="w-8 h-8 text-purple-400" />,
+    description: "Algorithms, data structures, and optimization"
+  },
+  {
+    name: "DevOps",
+    icon: <Terminal className="w-8 h-8 text-purple-400" />,
+    description: "CI/CD, Docker, and cloud platforms"
+  }
 ];
 
 const projects = [
