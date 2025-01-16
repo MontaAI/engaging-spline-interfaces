@@ -1,7 +1,7 @@
 import { SplineSceneBasic } from "@/components/ui/splite.demo";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Twitter, ExternalLink, Code2, Brain, Database, Git, Globe, Layout, Server, Terminal, Sparkles, Moon, Sun } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, ExternalLink, Code2, Brain, Database, GitBranch, Globe, Layout, Server, Terminal, Sparkles, Moon, Sun } from "lucide-react";
 import { AnimeNavBarDemo } from "@/components/ui/anime-navbar.demo";
 import { Squares } from "@/components/ui/squares-background";
 import { useTheme } from "next-themes";
@@ -284,7 +284,7 @@ const skills = [
   },
   {
     name: "Version Control",
-    icon: <Git className="w-8 h-8 text-purple-400" />,
+    icon: <GitBranch className="w-8 h-8 text-purple-400" />,
     description: "Git, GitHub, and collaborative development"
   },
   {
