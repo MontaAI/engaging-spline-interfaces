@@ -3,79 +3,73 @@
 @tailwind utilities;
 
 @keyframes shine {
-  0% {
-    transform: translateX(-100%);
-  }
-  50% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
 @layer base {
   :root {
-    /* Light theme - Pure white base with sharp contrasts */
+    /* Light theme - Pure white with perfect contrast */
     --background: 0 0% 100%; /* Pure white */
-    --foreground: 0 0% 0%; /* Pure black for text */
+    --foreground: 0 0% 0%; /* Pure black */
     
-    --card: 0 0% 100%; /* Pure white for cards */
+    --card: 0 0% 100%;
     --card-foreground: 0 0% 0%;
     
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
     
-    --primary: 221 83% 53%; /* Vibrant blue */
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 0 0% 98%; /* Nearly white */
+    --secondary: 0 0% 95%;
     --secondary-foreground: 0 0% 0%;
     
-    --muted: 0 0% 98%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
     
-    --accent: 0 0% 98%;
+    --accent: 0 0% 95%;
     --accent-foreground: 0 0% 0%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 0 0% 89%;
-    --input: 0 0% 89%;
+
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
     --ring: 0 0% 0%;
     
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Dark theme - Pure black base with sharp contrasts */
-    --background: 0 0% 0%; /* Pure black */
-    --foreground: 0 0% 100%; /* Pure white for text */
+    /* Dark theme - Pure black with perfect contrast */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
     
-    --card: 0 0% 0%; /* Pure black for cards */
+    --card: 0 0% 0%;
     --card-foreground: 0 0% 100%;
     
     --popover: 0 0% 0%;
     --popover-foreground: 0 0% 100%;
     
-    --primary: 217 91% 60%; /* Vibrant blue inverted */
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 0%;
     
-    --secondary: 0 0% 2%; /* Nearly black */
+    --secondary: 0 0% 5%;
     --secondary-foreground: 0 0% 100%;
     
-    --muted: 0 0% 2%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 5%;
+    --muted-foreground: 0 0% 60%;
     
-    --accent: 0 0% 2%;
+    --accent: 0 0% 5%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 0 0% 11%;
-    --input: 0 0% 11%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
     --ring: 0 0% 100%;
   }
 }
@@ -89,35 +83,38 @@
   }
 }
 
-/* Enhanced transitions for smoother theme switching */
+/* Enhanced transitions */
 .transition-theme {
   @apply transition-all duration-500;
 }
 
-/* Refined card hover effects for both themes */
+/* Card hover effects - perfect inversion */
 .card-hover-effect {
-  @apply hover:shadow-xl hover:shadow-primary/10
-         dark:hover:shadow-primary/20 
+  @apply hover:shadow-xl 
+         hover:shadow-black/10 dark:hover:shadow-white/10
+         hover:bg-black/[0.02] dark:hover:bg-white/[0.02]
          transition-all duration-300 transform hover:scale-[1.02];
 }
 
-/* Enhanced button hover effects */
+/* Button hover effects - perfect inversion */
 .button-hover-effect {
-  @apply hover:brightness-95 dark:hover:brightness-110 
+  @apply hover:bg-black/[0.05] dark:hover:bg-white/[0.05]
          transition-all duration-300 hover:scale-[1.02];
 }
 
-/* Refined gradient backgrounds */
+/* Gradient backgrounds - perfect inversion */
 .gradient-bg {
-  @apply bg-gradient-to-r from-black/5 to-black/5 
-         dark:from-white/10 dark:to-white/10;
+  @apply bg-gradient-to-r 
+         from-black/[0.02] to-black/[0.05]
+         dark:from-white/[0.02] dark:to-white/[0.05];
 }
 
-/* Glass effect for both themes */
+/* Glass effect - perfect inversion */
 .glass-effect {
   @apply backdrop-blur-md 
-         bg-white/80 dark:bg-black/50 
-         border border-white/20 dark:border-black/30;
+         bg-white/90 dark:bg-black/90
+         border border-black/10 dark:border-white/10
+         shadow-lg shadow-black/5 dark:shadow-white/5;
 }
 
 .loader {
@@ -132,10 +129,6 @@
 }
 
 @keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
