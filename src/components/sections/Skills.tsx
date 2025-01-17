@@ -19,7 +19,7 @@ export const Skills = () => {
               <CardContent className="p-6">
                 <div className="flex flex-col items-center space-y-4">
                   <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    {skill.icon}
+                    {<skill.icon className="w-8 h-8 text-primary" />}
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">{skill.name}</h3>
                   <p className="text-sm text-muted-foreground text-center">{skill.description}</p>
