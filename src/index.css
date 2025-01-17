@@ -16,67 +16,67 @@
 
 @layer base {
   :root {
-    /* Light theme defaults */
-    --background: 0 0% 100%; /* White */
+    /* Light theme - Pure white base with sharp contrasts */
+    --background: 0 0% 100%; /* Pure white */
     --foreground: 240 10% 3.9%; /* Near black for text */
     
-    --card: 0 0% 98%; /* Slightly off-white for cards */
+    --card: 0 0% 98%; /* Crisp white for cards */
     --card-foreground: 240 10% 3.9%;
     
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
     
-    --primary: 221 83% 53%; /* Bright blue */
+    --primary: 221 83% 53%; /* Vibrant blue */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 240 5% 96%; /* Light gray */
+    --secondary: 220 14% 96%; /* Very light gray */
     --secondary-foreground: 240 5.9% 10%;
     
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
     
-    --accent: 240 5% 96%;
+    --accent: 220 14% 96%;
     --accent-foreground: 240 6% 10%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
     --ring: 240 6% 10%;
     
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Dark theme colors - inverted from light */
-    --background: 240 10% 3.9%; /* Near black */
-    --foreground: 0 0% 98%; /* Off white for text */
+    /* Dark theme - Pure black base with sharp contrasts */
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 0 0% 100%; /* Pure white for text */
     
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 3.9%; /* Nearly black for cards */
+    --card-foreground: 0 0% 100%;
     
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
     
-    --primary: 217 91% 60%; /* Vibrant blue for dark theme */
+    --primary: 217 91% 60%; /* Vibrant blue inverted */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 240 5% 5%; /* Very dark gray */
+    --secondary-foreground: 0 0% 100%;
     
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 0 0% 7%;
+    --muted-foreground: 220 8% 70%;
     
-    --accent: 240 4% 16%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 240 5% 5%;
+    --accent-foreground: 0 0% 100%;
     
     --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 0 0% 100%;
     
-    --border: 240 4% 16%;
-    --input: 240 4% 16%;
-    --ring: 240 5% 84%;
+    --border: 240 5% 7%;
+    --input: 240 5% 7%;
+    --ring: 240 4% 16%;
   }
 }
 
@@ -87,6 +87,35 @@
   body {
     @apply bg-background text-foreground transition-colors duration-300;
   }
+}
+
+/* Enhanced transitions for smoother theme switching */
+.transition-theme {
+  @apply transition-all duration-500;
+}
+
+/* Refined card hover effects for both themes */
+.card-hover-effect {
+  @apply hover:shadow-xl dark:hover:shadow-primary/20 hover:shadow-secondary/20 
+         transition-all duration-300 transform hover:scale-[1.02];
+}
+
+/* Enhanced button hover effects */
+.button-hover-effect {
+  @apply hover:brightness-110 dark:hover:brightness-90 
+         transition-all duration-300 hover:scale-[1.02];
+}
+
+/* Refined gradient backgrounds */
+.gradient-bg {
+  @apply bg-gradient-to-r from-primary/5 to-secondary/5 
+         dark:from-primary/10 dark:to-secondary/10;
+}
+
+/* Glass effect for both themes */
+.glass-effect {
+  @apply backdrop-blur-md bg-background/50 dark:bg-background/30 
+         border border-border/50 dark:border-border/30;
 }
 
 .loader {
@@ -107,24 +136,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-/* Add smooth transitions for theme switching */
-.transition-theme {
-  @apply transition-all duration-300;
-}
-
-/* Card hover effects for both themes */
-.card-hover-effect {
-  @apply hover:shadow-lg dark:hover:shadow-primary/10 hover:shadow-secondary/10 transition-all duration-300;
-}
-
-/* Button hover effects */
-.button-hover-effect {
-  @apply hover:brightness-110 dark:hover:brightness-90 transition-all duration-200;
-}
-
-/* Custom gradient backgrounds for both themes */
-.gradient-bg {
-  @apply bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20;
 }
