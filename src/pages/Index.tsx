@@ -1,3 +1,4 @@
+
 import { AnimeNavBarDemo } from "@/components/ui/anime-navbar.demo";
 import { Squares } from "@/components/ui/squares-background";
 import { useTheme } from "next-themes";
@@ -20,17 +21,17 @@ const Index = () => {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen relative bg-background transition-theme">
+    <div className="min-h-screen relative bg-white transition-theme">
       {/* Theme Toggle Button */}
       <button
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="fixed top-4 right-4 z-50 p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+        className="fixed top-4 right-4 z-50 p-2 rounded-full bg-black/5 hover:bg-black/10 transition-colors"
         aria-label="Toggle theme"
       >
         {theme === "dark" ? (
           <Sun className="h-5 w-5 text-yellow-500" />
         ) : (
-          <Moon className="h-5 w-5 text-slate-700" />
+          <Moon className="h-5 w-5 text-black" />
         )}
       </button>
 
@@ -40,10 +41,10 @@ const Index = () => {
           direction="diagonal"
           speed={0.3}
           squareSize={50}
-          borderColor="rgba(255,255,255,0.1)"
-          hoverFillColor="rgba(255,255,255,0.05)"
+          borderColor="rgba(0,0,0,0.1)"
+          hoverFillColor="rgba(0,0,0,0.05)"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-white" />
       </div>
 
       {/* Content */}
