@@ -1,20 +1,25 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { skills } from "@/data/skills";
 
 export const Skills = () => {
   return (
-    <section id="skills" className="py-24 px-8">
+    <section id="skills" className="section-padding relative overflow-hidden">
+      <div className="absolute inset-0 gradient-bg -z-10" />
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
             Technical Skills
           </span>
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {skills.map((skill) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skills.map((skill, index) => (
             <Card 
               key={skill.name} 
-              className="group glass-effect card-hover-effect"
+              className="glass-effect card-hover-effect"
+              style={{
+                animationDelay: `${index * 100}ms`,
+              }}
             >
               <CardContent className="p-6">
                 <div className="flex flex-col items-center space-y-4">

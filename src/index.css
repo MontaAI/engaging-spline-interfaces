@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,67 +11,67 @@
 
 @layer base {
   :root {
-    /* Light theme - Pure white with perfect contrast */
-    --background: 0 0% 100%; /* Pure white */
-    --foreground: 0 0% 0%; /* Pure black */
+    /* Light mode - Clean and professional */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
     
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: 240 10% 3.9%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover-foreground: 240 10% 3.9%;
     
     --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 240 5.9% 90%;
+    --secondary-foreground: 240 5.9% 10%;
     
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
     
-    --accent: 0 0% 95%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 85%;
-    --input: 0 0% 85%;
-    --ring: 0 0% 0%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5% 64.9%;
     
     --radius: 0.5rem;
   }
-
+ 
   .dark {
-    /* Dark theme - Pure black with perfect contrast */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    /* Dark mode - Sophisticated and modern */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
     
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
     
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
     
     --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 0%;
+    --primary-foreground: 240 5.9% 10%;
     
-    --secondary: 0 0% 5%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
     
-    --muted: 0 0% 5%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
     
-    --accent: 0 0% 5%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
     
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
     
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
   }
 }
 
@@ -79,7 +80,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground antialiased transition-colors duration-300;
   }
 }
 
@@ -88,33 +89,55 @@
   @apply transition-all duration-500;
 }
 
-/* Card hover effects - perfect inversion */
+/* Card hover effects */
 .card-hover-effect {
-  @apply hover:shadow-xl 
-         hover:shadow-black/10 dark:hover:shadow-white/10
-         hover:bg-black/[0.02] dark:hover:bg-white/[0.02]
-         transition-all duration-300 transform hover:scale-[1.02];
+  @apply hover:shadow-xl hover:scale-[1.02]
+         bg-white/40 dark:bg-black/40
+         hover:bg-white/60 dark:hover:bg-black/60
+         border border-border
+         backdrop-blur-lg
+         transition-all duration-300;
 }
 
-/* Button hover effects - perfect inversion */
+/* Button hover effects */
 .button-hover-effect {
-  @apply hover:bg-black/[0.05] dark:hover:bg-white/[0.05]
-         transition-all duration-300 hover:scale-[1.02];
+  @apply hover:bg-primary/90
+         active:scale-95
+         transition-all duration-300;
 }
 
-/* Gradient backgrounds - perfect inversion */
+/* Gradient backgrounds */
 .gradient-bg {
   @apply bg-gradient-to-r 
-         from-black/[0.02] to-black/[0.05]
-         dark:from-white/[0.02] dark:to-white/[0.05];
+         from-background via-background/80 to-background
+         dark:from-background dark:via-background/80 dark:to-background;
 }
 
-/* Glass effect - perfect inversion */
+/* Glass effect */
 .glass-effect {
   @apply backdrop-blur-md 
-         bg-white/90 dark:bg-black/90
-         border border-black/10 dark:border-white/10
+         bg-white/80 dark:bg-black/80
+         border border-white/20 dark:border-white/10
          shadow-lg shadow-black/5 dark:shadow-white/5;
+}
+
+/* Image styles */
+.portfolio-image {
+  @apply rounded-lg
+         shadow-lg shadow-black/5 dark:shadow-white/5
+         border border-border
+         transition-all duration-300
+         hover:scale-[1.02];
+}
+
+/* Section spacing */
+.section-padding {
+  @apply py-24 px-8 md:px-12 lg:px-16;
+}
+
+/* Responsive grid */
+.projects-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
 }
 
 .loader {
