@@ -1,6 +1,5 @@
 
 import { AnimeNavBarDemo } from "@/components/ui/anime-navbar.demo";
-import { Squares } from "@/components/ui/squares-background";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
@@ -9,6 +8,7 @@ import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { Contact } from "@/components/sections/Contact";
+import { WavesBackgroundDemo } from "@/components/ui/waves-background.demo";
 
 const Index = () => {
   const { theme, setTheme } = useTheme();
@@ -35,16 +35,9 @@ const Index = () => {
         )}
       </button>
 
-      {/* Background with gradient overlay */}
+      {/* Background with waves */}
       <div className="fixed inset-0 z-0">
-        <Squares 
-          direction="diagonal"
-          speed={0.3}
-          squareSize={50}
-          borderColor="rgba(0,0,0,0.1)"
-          hoverFillColor="rgba(0,0,0,0.05)"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-white" />
+        <WavesBackgroundDemo />
       </div>
 
       {/* Content */}
