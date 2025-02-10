@@ -3,10 +3,29 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { projects } from "@/data/projects";
+import { useToast } from "@/hooks/use-toast";
 
 export const Projects = () => {
+  const { toast } = useToast();
+
+  const handleProjectClick = (url: string) => {
+    if (!url) {
+      toast({
+        title: "Coming Soon",
+        description: "This project will be available soon!",
+        variant: "default",
+      });
+      return;
+    }
+    window.open(url, '_blank');
+  };
+
   return (
-    <section id="projects" className="py-24 px-8">
+    <section 
+      id="projects" 
+      className="py-24 px-8"
+      aria-label="Featured Projects"
+    >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">
           <span className="bg-gradient-to-r from-eerie to-onyx dark:from-seasalt dark:to-anti-flash bg-clip-text text-transparent">
@@ -23,8 +42,9 @@ export const Projects = () => {
                 <div className="relative h-48 overflow-hidden">
                   <img 
                     src={`https://source.unsplash.com/${project.imageId}`}
-                    alt={project.title}
+                    alt={`Screenshot of ${project.title}`}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-eerie/80 to-transparent" />
                 </div>
@@ -49,7 +69,8 @@ export const Projects = () => {
                     <Button 
                       variant="outline"
                       className="flex-1 button-hover-effect"
-                      onClick={() => window.open(project.demoUrl, '_blank')}
+                      onClick={() => handleProjectClick(project.demoUrl)}
+                      aria-label={`View live demo of ${project.title}`}
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
                       Live Demo
@@ -57,7 +78,8 @@ export const Projects = () => {
                     <Button 
                       variant="outline"
                       className="flex-1 button-hover-effect"
-                      onClick={() => window.open(project.githubUrl, '_blank')}
+                      onClick={() => handleProjectClick(project.githubUrl)}
+                      aria-label={`View source code of ${project.title} on GitHub`}
                     >
                       <Github className="w-4 h-4 mr-2" />
                       View Code
