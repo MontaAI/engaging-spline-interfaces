@@ -5,8 +5,11 @@ import { Squares } from "@/components/ui/squares-background";
 export const Hero = () => {
   return (
     <section id="home" className="section-padding min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-seasalt via-anti-flash to-platinum animate-gradient-slow -z-20" />
+      
       {/* Squares background */}
-      <div className="absolute inset-0 -z-20">
+      <div className="absolute inset-0 -z-10">
         <Squares 
           direction="diagonal"
           speed={0.3}
@@ -16,9 +19,6 @@ export const Hero = () => {
           className="opacity-50 dark:opacity-30"
         />
       </div>
-      
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-seasalt via-anti-flash to-platinum animate-gradient-slow -z-10" />
       
       {/* Decorative elements */}
       <div className="absolute inset-0 opacity-20">
