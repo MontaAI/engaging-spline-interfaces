@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
@@ -8,7 +9,7 @@ export const Projects = () => {
     <section id="projects" className="py-24 px-8">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+          <span className="bg-gradient-to-r from-eerie to-onyx dark:from-seasalt dark:to-anti-flash bg-clip-text text-transparent">
             Featured Projects
           </span>
         </h2>
@@ -25,20 +26,20 @@ export const Projects = () => {
                     alt={project.title}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-eerie/80 to-transparent" />
                 </div>
                 <div className="p-6 space-y-4">
-                  <h3 className="text-2xl font-semibold text-foreground group-hover:text-purple-400 transition-colors">
+                  <h3 className="text-2xl font-semibold text-eerie dark:text-seasalt group-hover:text-onyx dark:group-hover:text-anti-flash transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-onyx/80 dark:text-anti-flash/80 leading-relaxed">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.technologies.map((tech) => (
                       <span 
                         key={tech} 
-                        className="text-sm bg-primary/20 text-primary px-3 py-1 rounded-full"
+                        className="text-sm bg-onyx/10 dark:bg-seasalt/10 text-onyx dark:text-seasalt px-3 py-1 rounded-full"
                       >
                         {tech}
                       </span>
