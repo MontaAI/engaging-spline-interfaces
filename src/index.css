@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,8 +69,13 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border selection:bg-primary/10;
   }
+  
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
     @apply bg-background text-foreground antialiased transition-colors duration-300;
   }
@@ -112,45 +118,32 @@
            border border-platinum/20 dark:border-platinum/10
            shadow-lg shadow-black/5 dark:shadow-white/5;
   }
+
+  .section-padding {
+    @apply py-24 px-8 md:px-12 lg:px-16;
+  }
 }
 
-@keyframes shine {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Enhanced transitions */
-.transition-theme {
-  @apply transition-all duration-500;
+@keyframes scale-in {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-/* Gradient backgrounds */
-.gradient-bg {
-  @apply bg-gradient-to-r 
-         from-background via-background/80 to-background
-         dark:from-background dark:via-background/80 dark:to-background;
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
 }
 
-/* Image styles */
-.portfolio-image {
-  @apply rounded-lg
-         shadow-lg shadow-black/5 dark:shadow-white/5
-         border border-border
-         transition-all duration-300
-         hover:scale-[1.02];
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
 }
 
-/* Section spacing */
-.section-padding {
-  @apply py-24 px-8 md:px-12 lg:px-16;
-}
-
-/* Responsive grid */
-.projects-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
-}
-
+/* Loading animation */
 .loader {
   width: 48px;
   height: 48px;
@@ -165,4 +158,31 @@
 @keyframes rotation {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Image optimization */
+img {
+  @apply max-w-full h-auto;
+}
+
+/* Responsive container */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Focus styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
 }
