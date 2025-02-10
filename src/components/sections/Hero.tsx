@@ -1,9 +1,22 @@
 
 import { SplineSceneBasic } from "@/components/ui/splite.demo";
+import { Squares } from "@/components/ui/squares-background";
 
 export const Hero = () => {
   return (
     <section id="home" className="section-padding min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Squares background */}
+      <div className="absolute inset-0 -z-20">
+        <Squares 
+          direction="diagonal"
+          speed={0.3}
+          squareSize={50}
+          borderColor="rgba(255,255,255,0.1)"
+          hoverFillColor="rgba(255,255,255,0.05)"
+          className="opacity-50 dark:opacity-30"
+        />
+      </div>
+      
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-seasalt via-anti-flash to-platinum animate-gradient-slow -z-10" />
       

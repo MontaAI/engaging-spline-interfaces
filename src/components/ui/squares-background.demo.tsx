@@ -1,3 +1,4 @@
+
 import { Squares } from "@/components/ui/squares-background"
 
 export function SquaresDemo() {
